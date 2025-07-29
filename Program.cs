@@ -1,27 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Pulumi;
 using Twingate.Twingate;
 using Twingate.Twingate.Inputs;
 using Twingate.Twingate.Outputs;
 
-await Deployment.RunAsync(() =>
+class Program
 {
-    var homelabNetwork = new TwingateRemoteNetwork("tg_remote_network_hl", new TwingateRemoteNetworkArgs
-    {
-        Name = "Homelab",
-    });
+    static Task<int> Main() => Deployment.RunAsync<DevStack>();
+}
 
-    var homelabConnector = new TwingateConnector("tg_connector_hl", new TwingateConnectorArgs
+public class DevStack : Stack
+{
+    public DevStack()
     {
-        Name = "tg-connector-hl-01"
-        RemoteNetworkId = homelabNetwork.Id,
-        StatusUpdatesEnabled = true,
-    });
-    
-    return new Dictionary<string, object?>
-    {
-        { "remoteNetworkId", homelabNetwork.Id },
-        { "connectorId", homelabConnector.Id }
-    };
-});
+        var homelabNetwork = new TwingateRemoteNetwork("tg_remote_network_hl", new TwingateRemoteNetworkArgs
+        {
+            Name = "Homelab",
+        });
+
+        var homelabConnector = new TwingateConnector("tg_connector_hl", new TwingateConnectorArgs
+        {
+            RemoteNetworkId = homelabNetwork.Id,
+            StatusUpdatesEnabled = true,
+        });
+    }
+}
