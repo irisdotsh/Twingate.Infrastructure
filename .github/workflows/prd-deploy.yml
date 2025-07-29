@@ -1,0 +1,21 @@
+name: Pulumi Deploy (prd)
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+jobs:
+  up:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - uses: pulumi/actions@v6
+        with:
+          command: up
+          stack-name: irisblankenship-org/prd
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
