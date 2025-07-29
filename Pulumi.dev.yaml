@@ -1,0 +1,4 @@
+config:
+  twingate:network: irisblankenship
+  twingate:apiToken:
+    secure: AAABALO1F0C/ryzFY1ISvdAQ1h8QR2BcqDv6InDAKlgzcQljNJg8vMEM76xhS5za15d6Ay8GuOWFCHFNLCAMKTPDFoDbeWHR72DujDNrySMgejV8QJH7//31hXGk6VW62TlZTUEfKPqV3gB4nEJGd/Fe98gmF+TEEXPSh325lE/kTvHzd1AZiQEy7vi60o+jmZ1OQFqNWsjzdWl+JjdQzsd7TaG/zA==
